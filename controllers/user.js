@@ -17,6 +17,16 @@ const handleUserSignup = async (req, res) => {
         console.error(error);
         res.status(400).send(error.message);
     }
+    return res.redirect("/");
+};
+const handleUserLogin = async (req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email, password });
+    if(!user)
+        return res.render("login", {error: "Invalid email or password"});
+
+    return res.redirect("/");
+    
 };
 
-module.exports = { handleUserSignup };
+module.exports = { handleUserSignup,handleUserLogin };
