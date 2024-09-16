@@ -28,8 +28,9 @@ const handleUserLogin = async (req, res) => {
         return res.render("login", {error: "Invalid email or password"});
 
     const token = setUser(user)
-    res.cookie('uid', token)
-    return res.redirect("/");
+    // res.cookie('uid', token)
+
+    return res.redirect({token});
     
 };
 
